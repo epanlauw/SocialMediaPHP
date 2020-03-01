@@ -10,8 +10,14 @@
 
         <script>
             function validate() {
+                var c = document.getElementById("email").value;
                 var a = document.getElementById("password").value;
                 var b = document.getElementById("confirm-password").value;
+                
+                if(c == ""|| a == "" || b == ""){
+                    alert("Please insert Username and Password");
+                    return false;
+                }
 
                 if(a != b){
                     alert("Password do not match");
@@ -36,7 +42,7 @@
                 <div class="form-group">
                     <div class="col-md-8">
                         <br/>
-                        <input type="text" name="email" class="form-control" placeholder="Email">
+                        <input type="text" name="email" class="form-control" placeholder="Email" id="email">
                     </div>
                 </div>
                 <div class="form-group">
