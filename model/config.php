@@ -4,5 +4,9 @@
     $password = "";
     $dbname = "sosmed";
 
-    $db = new mysqli($host, $username, $password, $dbname);
+    try{
+        $db = new mysqli($host, $username, $password,$dbname);
+    }catch(mysqli_sql_exception $e){
+
+    }
 ?>
