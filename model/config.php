@@ -7,6 +7,6 @@
     try{
         $db = new mysqli($host, $username, $password,$dbname);
     }catch(mysqli_sql_exception $e){
-
+        die("Terjadi masalah: ".$e->getMessage());
     }
 ?>
