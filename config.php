@@ -1,12 +1,15 @@
 <?php 
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "sosmed";
+    class Database{
+       var $root = "localhost";
+       var $username = "root";
+       var $password = "";
+       var $dbname = "sosmed";
 
-    try{
-        $db = new mysqli($host, $username, $password,$dbname);
-    }catch(mysqli_sql_exception $e){
-        die("Terjadi masalah: ".$e->getMessage());
+       function __construct(){
+           $this->koneksi = mysqli_connect($this->root, $this->username, $this->password, $this->dbname);
+           if(mysqli_connect_errno()){
+               echo "Koneksi database gagal: " . mysqli_connect_error();
+           }
+       }
     }
 ?>
