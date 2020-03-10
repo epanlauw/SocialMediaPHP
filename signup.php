@@ -1,3 +1,34 @@
+<?php 
+    require_once('config.php');
+
+    function generateRandomString($nbLetters){
+        $randString="";
+        $charUniverse="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        for($i=0; $i<$nbLetters; $i++){
+           $randInt=rand(0,61);
+            $randChar=$charUniverse[$randInt];
+            $randString=$randString.$randChar;
+        }
+        return $randString;
+    }
+
+    if(isset($_POST['register'])){
+        // filter data yang diinputkan
+        $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
+        $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $gender = $_POST['gender'];
+        $birthdate = $_POST['birthdate'];
+        // enkripsi password
+        $salt = generateRandomString(10);
+        $password = md5($_POST['password'].$salt);
+
+        // menyiapkan query
+        $sql = "INSERT INTO users values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender')";
+
+        mysqli_query($db,$sql);
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,7 +88,21 @@
                         <input type="password" name="password" class="form-control" placeholder="Confirmation Password" id="confirm-password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <br/>
+                        <input type="date" name="birthdate" class="form-control" placeholder="Birthday">
+                    </div>
+                </div>
+                <div class="form-group">
+                   <div class="col-md-8">
+                    <br/>
+                        <h4>Jenis Kelamin</h4>
+                        <input type="radio" name="gender" value="pria"> Male
+                        <input type="radio" name="gender" value="wanita"> Female
+                   </div>
+                </div>
+                <button type="submit" class="btn btn-primary" name="register">Sign Up</button>
             </form>
         </div>
 
