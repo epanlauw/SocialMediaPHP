@@ -15,7 +15,6 @@
             session_start();
             $_SESSION['user'] = $row;
             $_SESSION['status'] = $login;
-            echo "true";
             header("Location:timeline.php");
         }else{
             echo "false";
