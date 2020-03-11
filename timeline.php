@@ -19,9 +19,11 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body text-center">
-                            <?php 
-                            echo '<img class="img img-responsive rounded-circle mb-3" width="160" src="data:image/jpeg;base64,'.base64_encode($_SESSION['user']['photo']).'"/>'; ?>
+                            
+                            <img class="img img-responsive rounded-circle mb-3" width="160" src="data:image/jpeg;base64,<?php echo base64_encode($_SESSION['user']['photo']) ?>" />
+
                             <h3><?php echo  $_SESSION['user']['fName'].' '.$_SESSION['user']['lName'];?></h3>
+
                             <p><a href="logout.php">Logout</a></p>
                         </div>
                     </div>
