@@ -1,0 +1,19 @@
+body{
+	font-family: sans-serif;
+	background: #d5f0f3;
+}
+ 
+h3{
+	text-align: center;
+	font-weight: 300;
+}
+ 
+.login_btn{
+	background: #46de4b;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
