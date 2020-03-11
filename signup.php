@@ -24,11 +24,9 @@
         $password = md5($_POST['password'].$salt);
 
         // menyiapkan query
-        $sql = "INSERT INTO users values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender')";
-
+        $sql = "INSERT INTO users values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender',null)";
         mysqli_query($db,$sql);
-
-        header("Location: index.php");
+        header("Location:login.php");
     }
 ?>
 <!DOCTYPE html>

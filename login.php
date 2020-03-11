@@ -1,7 +1,6 @@
 <?php 
     require_once("config.php");
-
-    if(isset($_POST['login'])){
+    if(isset($_POST['login'])){      
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = $_POST['password'];
 
@@ -10,14 +9,14 @@
         $query = "select * from users where email = '$email' and password = MD5(CONCAT('$password',users.salt))";
         
         $cek = mysqli_num_rows($login);
-
         $result = $db->query($query);
         $row = $result -> fetch_assoc();
         if($cek >0){
             session_start();
             $_SESSION['user'] = $row;
             $_SESSION['status'] = $login;
-            header("Location: timeline.php");
+            echo "true";
+            header("Location:timeline.php");
         }else{
             echo "false";
         }
@@ -39,7 +38,7 @@
         <div class="row">
             <p>&larr; <a href="index.php">Home</a>
             <h4>Masuk ke Sosmed</h4>
-            <p>Belum punya akun?<a href="register.php">Registration</a>
+            <p>Belum punya akun?<a href="signup.php">Registration</a>
 
             <form action="" method="POST">
                 <div class="form-group">
