@@ -27,6 +27,8 @@
         $sql = "INSERT INTO users values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender')";
 
         mysqli_query($db,$sql);
+
+        header("Location: index.php");
     }
 ?>
 <!DOCTYPE html>
@@ -57,8 +59,8 @@
             }
         </script>
     </head>
-    <body>
-        <div class="container">
+    <body class="bg-light">
+        <div class="container mt-5">
             <h2>CREATE NEW ACCOUNT</h2>
             <h5>It's free and always be.</h5>
             <form action="" method="post" onSubmit="return validate();">
@@ -105,6 +107,8 @@
                 <button type="submit" class="btn btn-primary" name="register">Sign Up</button>
             </form>
         </div>
-
+        <div class="col-md-6">
+            <img class="img img-responsive" src="img/connect.png" />
+        </div>
     </body>
 </html>
