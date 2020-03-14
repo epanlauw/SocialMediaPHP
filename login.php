@@ -6,13 +6,13 @@
         if($_SESSION["code"] != $_POST["kodecaptcha"]){
             echo "Kode Captcha Salah";
         }else{
-            session_unset("code");
-            $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-            $password = $_POST['password'];
+			session_unset("code");
+			$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+			$password = $_POST['password'];
+			
+            $login = mysqli_query($db,"select * from users where email = '$email' or username ='$email' and password = MD5(CONCAT('$password',users.salt))");
 
-            $login = mysqli_query($db,"select * from users where email = '$email' and password = MD5(CONCAT('$password',users.salt))");
-
-            $query = "select * from users where email = '$email' and password = MD5(CONCAT('$password',users.salt))";
+            $query = "select * from users where email = '$email' or username ='$email' and password = MD5(CONCAT('$password',users.salt))";
             
             $cek = mysqli_num_rows($login);
             $result = $db->query($query);
@@ -21,7 +21,7 @@
                 session_start();
                 $_SESSION['user'] = $row;
                 $_SESSION['status'] = $login;
-                header("Location:timeline.php");
+                header("Location:home.php");
             }else{
                 echo "false";
             }
@@ -57,7 +57,7 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="email" class="form-control input_user" value="" placeholder="username">
+							<input type="text" name="email" class="form-control input_user" value="" placeholder="Username/Email">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -86,9 +86,6 @@
 				<div class="mt-2">
 					<div class="d-flex justify-content-center links">
 						Don't have an account? <a href="signup.php" class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
 					</div>
 				</div>
 			</div>

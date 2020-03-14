@@ -1,0 +1,49 @@
+body{
+	font-family: sans-serif;
+	background: #FEB72B;
+}
+
+.navbar-brand{
+	text-align: center;
+    font-family: 'Abril Fatface', cursive;
+}
+ 
+h3{
+	text-align: center;
+	font-family: 'Abril Fatface', cursive;
+	font-weight: 300;
+}
+ 
+.login_btn{
+	background: #46de4b;
+	color: white;
+	font-size: 11pt;
+	width: 100%;
+	border: none;
+	border-radius: 3px;
+	padding: 10px 20px;
+}
+
+.h7 {
+	font-size: 0.8rem;
+}
+
+.gedf-wrapper {
+	margin-top: 0.97rem;
+}
+
+@media (min-width: 992px) {
+	.gedf-main {
+		padding-left: 4rem;
+		padding-right: 4rem;
+	}
+	.gedf-card {
+		margin-bottom: 2.77rem;
+	}
+}
+
+/**Reset Bootstrap*/
+.dropdown-toggle::after {
+	content: none;
+	display: none;
+}

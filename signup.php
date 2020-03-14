@@ -19,12 +19,13 @@
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $gender = $_POST['gender'];
         $birthdate = $_POST['birthdate'];
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
         // enkripsi password
         $salt = generateRandomString(10);
         $password = md5($_POST['password'].$salt);
 
         // menyiapkan query
-        $sql = "INSERT INTO users values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender',null)";
+        $sql = "INSERT INTO users(fName,lName,email,password,salt,tglLahir,jenisKelamin,photo,username) values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender','img/default.jpeg','$username')";
         mysqli_query($db,$sql);
         header("Location:login.php");
     }
@@ -73,6 +74,12 @@
                 <div class="form-group">
                     <div class="col-md-8">
                         <br/>
+                        <input type="text" name="username" class="form-control" placeholder="Username" id="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <br/>
                         <input type="text" name="email" class="form-control" placeholder="Email" id="email">
                     </div>
                 </div>
@@ -95,18 +102,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                   <div class="col-md-8">
-                    <br/>
-                        <h4>Jenis Kelamin</h4>
-                        <input type="radio" name="gender" value="pria"> Male
-                        <input type="radio" name="gender" value="wanita"> Female
-                   </div>
+                   <div class="input-group">
+                    <select class="form-control input-md" name="gender">
+                        <option disabled>Select your gender</option>
+                        <option value="pria">Pria</option>
+                        <option value="wanita">Wanita</option>
+                    </select> 
                 </div>
                 <button type="submit" class="btn btn-primary" name="register">Sign Up</button>
             </form>
-        </div>
-        <div class="col-md-6">
-            <img class="img img-responsive" src="img/connect.png" />
         </div>
     </body>
 </html>
