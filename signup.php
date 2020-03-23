@@ -34,6 +34,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -58,59 +59,88 @@
             }
         </script>
     </head>
-    <body class="bg-light">
-        <div class="container mt-5">
-            <h2>CREATE NEW ACCOUNT</h2>
-            <h5>It's free and always be.</h5>
-            <form action="" method="post" onSubmit="return validate();">
-                <div class="form-group">
-                    <div class="col-md-4">
-                        <input type="text" name="first_name" class="form-control" placeholder="First Name">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .main-content {
+            width: 50%;
+            height: 40%;
+            margin: 10px auto;
+            background-color: #fff;
+            border: 2px solid #e6e6e6;
+            padding : 40px 50px;
+        }
+        .header{
+            border: 0px solid #000;
+            margin-bottom: 5px;
+        }
+        .well{
+            background-color: #187FAB;
+        }
+        #signup{
+            width: 60%;
+            border-radius: 30px;
+        }
+    </style>
+    <body>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well">
+                    <center><h1 style="color:white;">Sosmed</h1></center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main-content">
+                    <div class="header">
+                        <h2 style="text-align:center;"><strong>CREATE NEW ACCOUNT</strong></h3>
+                        <h5 style="text-align:center;"><strong>It's free and always be.</strong></h5><hr>
                     </div>
-                    <div class="col-md-4">
-                        <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                    <div class="1-part">
+                        <form method="post" action="" onSubmit="return validate();">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="text" name="first_name" class="form-control" placeholder="First Name" required="required">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" name="username" class="form-control" placeholder="Username" id="username" required="required">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="text" name="email" class="form-control" placeholder="Email" id="email" required="required">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" name="password" class="form-control" placeholder="Password" id="password" required="required">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" name="password" class="form-control" placeholder="Confirmation Password" id="confirm-password" required="required">
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                                <select class="form-control input-md" name="gender" required="required">
+                                    <option disabled>Select your gender</option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
+                                </select> 
+                            </div><br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="date" name="birthdate" class="form-control" placeholder="Birthday" required="required">
+                            </div><br>
+                            <center><button type="submit" class="btn btn-primary" name="register" id="signup">Sign Up</button></center>
+                        </form>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <br/>
-                        <input type="text" name="username" class="form-control" placeholder="Username" id="username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <br/>
-                        <input type="text" name="email" class="form-control" placeholder="Email" id="email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <br/>
-                        <input type="password" name="password" class="form-control" placeholder="Password" id="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <br/>
-                        <input type="password" name="password" class="form-control" placeholder="Confirmation Password" id="confirm-password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        <br/>
-                        <input type="date" name="birthdate" class="form-control" placeholder="Birthday">
-                    </div>
-                </div>
-                <div class="form-group">
-                   <div class="input-group">
-                    <select class="form-control input-md" name="gender">
-                        <option disabled>Select your gender</option>
-                        <option value="pria">Pria</option>
-                        <option value="wanita">Wanita</option>
-                    </select> 
-                </div>
-                <button type="submit" class="btn btn-primary" name="register">Sign Up</button>
-            </form>
+            </div>
         </div>
     </body>
 </html>
