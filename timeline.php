@@ -14,6 +14,43 @@
         <link rel="stylesheet" type="text/css" href="css/home_style.css">
         <title><?php echo $namalengkap?></title>
     </head>
+    <style>
+        #upload_image_btn{
+            position:absolute;
+            top: 47%;
+            right: 14.2%;
+            min-width: 100px;
+            max-width: 100px;
+            border-radius: 4px;
+            transform: translate(-50%, -50%);
+        }
+        #body{
+            width: 70%;
+        }
+        #btn_post{
+            min-width: 25%;
+            max-width: 25%;
+        }
+        #insert_post{
+            background-color:#fff;
+            border: 2px solid #e6e6e6;
+            padding:40px 50px;
+        }
+        #post{
+            border:5px solid #e6e6e6;
+            padding:40px 50px;
+        }
+        #post-img{
+            padding-top: 5px;
+            padding-right:10px;
+            min-width: 102%;
+            max-width: 50%;
+        }
+        #single-post{
+            border: 5px solid #e6e6e6;
+            padding:40px 50px;
+        }
+    </style>
     <body>
         <div class="row">
             <div id="insert_post" class="col-sm-12">
@@ -27,6 +64,12 @@
                 </form>
                 <?php insertPost(); ?>
                 </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+               <center><h2><strong>News Feed</strong></h2></center>
+               <?php getPost();?> 
             </div>
         </div>
     </body>
