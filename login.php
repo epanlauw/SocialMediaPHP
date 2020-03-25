@@ -56,13 +56,13 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="email" class="form-control input_user" value="" placeholder="Username/Email">
+							<input required="required" type="text" name="email" class="form-control input_user" value="" placeholder="Username/Email">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+							<input required="required" type="password" name="password" class="form-control input_pass" value="" placeholder="password">
 						</div>
 						<div class="d-flex justify-content-center">
 								<img src="captcha.php" alt="gambar">

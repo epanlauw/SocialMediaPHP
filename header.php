@@ -35,7 +35,7 @@
                 <li><a href='profile.php?<?php echo "u_id=$user_id" ?>'><?php echo $namalengkap ?></a></li>
                 <li><a href="timeline.php">Home</a></li>
                 <li><a href="members.php">Find People</a></li>
-                <li><a href="messages.php?u_id=new">Messages</a></li>
+                <!-- <li><a href="messages.php?u_id=new">Messages</a></li> -->
                 <?php 
                     echo"
                     <li class='dropdown'>
@@ -56,7 +56,7 @@
                     ";
                 ?>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <!-- <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <form class="navbar-form navbar-left" method="post" action="results.php">
                         <div class="form-group">
@@ -65,7 +65,7 @@
                         <button type="submit" class="btn btn-info">Search</button>
                     </form>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </nav>
