@@ -33,8 +33,8 @@
                     $post = mysqli_num_rows($run_posts);
                 ?>
                 <li><a href='profile.php?<?php echo "u_id=$user_id" ?>'><?php echo $namalengkap ?></a></li>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="home.php">Find People</a></li>
+                <li><a href="timeline.php">Home</a></li>
+                <li><a href="members.php">Find People</a></li>
                 <li><a href="messages.php?u_id=new">Messages</a></li>
                 <?php 
                     echo"

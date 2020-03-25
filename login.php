@@ -20,7 +20,7 @@
                 session_start();
                 $_SESSION['user'] = $row;
                 $_SESSION['status'] = $login;
-                header("Location:home.php");
+                header("Location:timeline.php");
             }else{
 				$fail = true;
             }
