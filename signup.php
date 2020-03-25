@@ -24,10 +24,18 @@
         $salt = generateRandomString(10);
         $password = md5($_POST['password'].$salt);
 
-        // menyiapkan query
-        $sql = "INSERT INTO users(fName,lName,email,password,salt,tglLahir,jenisKelamin,photo,username) values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender','img/default.jpeg','$username')";
-        mysqli_query($db,$sql);
-        header("Location:login.php");
+        $cek_username = mysqli_num_rows(mysqli_query($db,"SELECT username FROM users WHERE username = '$username'"));
+        $cek_email =  mysqli_num_rows(mysqli_query($db,"SELECT email FROM users WHERE email = '$email'"));
+        if($cek_username>0){
+            $usernameErr  = "Username telah digunakan";
+        }else if($cek_email>0){
+            $emailErr =  "Email telah digunakan";
+        }else {
+            // menyiapkan query
+            $sql = "INSERT INTO users(fName,lName,email,password,salt,tglLahir,jenisKelamin,photo,username,post,relationship,deskripsi,cover) values('$first_name','$last_name','$email','$password','$salt','$birthdate','$gender','default.jpeg','$username','no','...','Halo Selamat Datang di Sosmed Kami Selamat Menikmati','background-cover.jpg')";
+            mysqli_query($db,$sql);
+            header("Location:login.php");
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -82,6 +90,7 @@
             width: 60%;
             border-radius: 30px;
         }
+        .error {color: #FF0000;}
     </style>
     <body>
         <div class="row">
@@ -93,6 +102,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
+            <center><img src="https://cdn4.iconfinder.com/data/icons/animals-45/755/Giraffe-512.png" width="200px" height="200px" class="brand_logo" alt="Logo"></center>
                 <div class="main-content">
                     <div class="header">
                         <h2 style="text-align:center;"><strong>CREATE NEW ACCOUNT</strong></h3>
@@ -111,11 +121,13 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input type="text" name="username" class="form-control" placeholder="Username" id="username" required="required">
-                            </div><br>
+                            </div>
+                            <span class="error"><?php if(isset($_POST['register'])) if($cek_username > 0) echo "*" . $usernameErr;?></span><br>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <input type="text" name="email" class="form-control" placeholder="Email" id="email" required="required">
-                            </div><br>
+                            </div>
+                            <span class="error"><?php if(isset($_POST['register'])) if($cek_email > 0) echo "*" . $emailErr;?></span><br>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <input type="password" name="password" class="form-control" placeholder="Password" id="password" required="required">
@@ -136,7 +148,8 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 <input type="date" name="birthdate" class="form-control" placeholder="Birthday" required="required">
                             </div><br>
-                            <center><button type="submit" class="btn btn-primary" name="register" id="signup">Sign Up</button></center>
+                            <center><button type="submit" class="btn btn-primary btn-lg" name="register" id="signup">Sign Up</button></center>
+                            <center><h4>Already have an account? <a style="color: #187FAB;" data-toggle="tooltip" title="Login" href="login.php">Login</a></h4></center>
                         </form>
                     </div>
                 </div>

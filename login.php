@@ -1,18 +1,17 @@
 <?php 
-    require_once("config.php");
-    
-    if(isset($_POST['login'])){   
+    require_once("config.php");  
+	if(isset($_POST['login'])){ 
+		$fail = false; 
         session_start();
         if($_SESSION["code"] != $_POST["kodecaptcha"]){
-            echo "Kode Captcha Salah";
+            $capthaError = "Kode Captcha Salah";
         }else{
-			session_unset("code");
 			$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 			$password = $_POST['password'];
 			
             $login = mysqli_query($db,"select * from users where email = '$email' or username ='$email' and password = MD5(CONCAT('$password',users.salt))");
 
-            $query = "select * from users where email = '$email' or username ='$email' and password = MD5(CONCAT('$password',users.salt))";
+            $query = "select * from users where email = '$email' and password = MD5(CONCAT('$password',users.salt))  or username ='$email' and password = MD5(CONCAT('$password',users.salt))";
             
             $cek = mysqli_num_rows($login);
             $result = $db->query($query);
@@ -23,16 +22,15 @@
                 $_SESSION['status'] = $login;
                 header("Location:home.php");
             }else{
-                echo "false";
+				$fail = true;
             }
-        }   
+		}
         
     }
 ?>
 
 <!DOCTYPE html>
 <html>
-    
 <head>
 	<title>Login Page</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -40,6 +38,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+<style>.error {color: #FF0000;}</style>
 <body>
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
@@ -78,11 +77,12 @@
 							</div>
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	    <input type="submit" class="btn btn-success btn-block" name="login" value="Masuk"/>
+						 <input type="submit" class="btn btn-success btn-block" name="login" value="Masuk"/>
 				   </div>
+				   <span class="error"><?php if(isset($_POST['login']))  if($_SESSION["code"] != $_POST["kodecaptcha"]) echo "*" . $capthaError;?></span>
+				   <span class="error"><?php if(isset($_POST['login']))  if($fail == true) echo "*ID atau Password Salah";?></span>
 					</form>
 				</div>
-		
 				<div class="mt-2">
 					<div class="d-flex justify-content-center links">
 						Don't have an account? <a href="signup.php" class="ml-2">Sign Up</a>

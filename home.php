@@ -1,5 +1,4 @@
-<?php require_once("auth.php"); ?>
-
+<?php require_once("auth.php");?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +38,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
+                        <img class="img img-responsive rounded-circle mb-3" width="160" src="profil/<?php echo $_SESSION['user']['photo']; ?>" />
                         <div class="h5">@<?php echo $_SESSION['user']['username'];?></div>
                         <div class="h7 text-muted">Fullname :<?php echo  $_SESSION['user']['fName'].' '.$_SESSION['user']['lName'];?></div>
                         <div class="h7">...........................
